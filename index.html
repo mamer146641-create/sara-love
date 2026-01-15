@@ -1,74 +1,57 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <title>Pour Sara ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(180deg, #ff5f6d, #ffc371);
   height: 100vh;
+  background: linear-gradient(180deg, #ff6b6b, #ffb86c);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: white;
-  text-align: center;
-}
-
-.slide {
-  display: none;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.slide.active {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card {
-  background: rgba(255,255,255,0.22);
-  backdrop-filter: blur(10px);
-  border-radius: 22px;
-  padding: 25px;
-  width: 80%;
-  max-width: 360px;
-}
-
-button {
-  margin-top: 18px;
-  padding: 10px 28px;
-  border: none;
-  border-radius: 20px;
-  background: white;
-  color: #ff5f6d;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.hearts {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
 }
 
 .heart {
   position: absolute;
-  color: rgba(255,255,255,0.35);
-  animation: float 12s infinite;
-  font-size: 18px;
+  color: rgba(255,255,255,0.5);
+  animation: float 12s linear infinite;
 }
 
 @keyframes float {
-  0% { transform: translateY(100vh); opacity: 0; }
-  10% { opacity: 1; }
-  100% { transform: translateY(-10vh); opacity: 0; }
+  from { transform: translateY(100vh); }
+  to { transform: translateY(-10vh); }
+}
+
+.card {
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  width: 90%;
+  max-width: 380px;
+  text-align: center;
+}
+
+h1 { margin-top: 0; }
+
+button {
+  margin-top: 20px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 20px;
+  background: white;
+  color: #ff6b6b;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 img {
@@ -76,6 +59,8 @@ img {
   border-radius: 15px;
   margin-top: 15px;
 }
+
+.hidden { display: none; }
 </style>
 </head>
 
@@ -85,105 +70,85 @@ img {
   <source src="no_one_noticed.mp3" type="audio/mpeg">
 </audio>
 
-<div class="hearts"></div>
+<div id="hearts"></div>
 
-<!-- SLIDE 1 -->
-<div class="slide active">
-  <div class="card">
-    <h2>Pour Sara ❤️</h2>
-    <p>
-      Mon amoureuse,<br>
-      voici un petit cadeau de ma part.<br>
-      J’espère que tu vas aimer.
-    </p>
-    <p style="font-size:14px; opacity:0.9;">
-      Active la musique 🎵
-    </p>
-    <button onclick="nextSlide()">Suivant</button>
-  </div>
+<div class="card" id="slide1">
+  <h1>Pour Sara ❤️</h1>
+  <p>
+    Mon amoureuse,<br>
+    voici un petit cadeau de ma part.<br>
+    J’espère que tu vas aimer.
+  </p>
+  <p><em>Pense à activer la musique 🎶</em></p>
+  <button onclick="nextSlide()">Suivant</button>
 </div>
 
-<!-- SLIDE 2 -->
-<div class="slide">
-  <div class="card">
-    <h2>Des fleurs pour toi 🌹</h2>
-    <p>
-      Je sais que ce ne sont pas des vraies fleurs,<br>
-      mais elles sont pour toi.<br><br>
-      Je t’aime mon amoureuse, mon bébé.
-    </p>
+<div class="card hidden" id="slide2">
+  <h1>Des fleurs pour toi 🌹</h1>
+  <p>
+    Je sais que ce ne sont pas des vraies fleurs,<br>
+    mais elles sont pour toi.
+  </p>
+  <p>Je t’aime mon amoureuse, mon bébé.</p>
 
-    <img src="WhatsApp Image 2025-01-15 at 07.36.37.jpeg">
-    <img src="WhatsApp Image 2025-01-15 at 07.36.38.jpeg">
+  <img src="WhatsApp Image 2026-01-15 at 07.36.36.jpeg">
+  <img src="WhatsApp Image 2026-01-15 at 07.36.37.jpeg">
 
-    <button onclick="nextSlide()">Suivant</button>
-  </div>
+  <button onclick="nextSlide()">Suivant</button>
 </div>
 
-<!-- SLIDE 3 -->
-<div class="slide">
-  <div class="card">
-    <h2>Tu me manques ❤️</h2>
-    <p>
-      Mon cœur, tu me manques beaucoup.<br>
-      Même avec la distance, je pense à toi tout le temps.<br><br>
-      Je t’aime et je t’attends.<br>
-      Cet été, on va tellement s’amuser…<br>
-      j’ai trop hâte.
-    </p>
-    <button onclick="nextSlide()">Suivant</button>
-  </div>
+<div class="card hidden" id="slide3">
+  <h1>Tu me manques ❤️</h1>
+  <p>
+    Malgré la distance, tu me manques beaucoup.<br>
+    Je t’aime et je t’attends.
+  </p>
+  <p>
+    Cet été, on va tellement s’amuser…<br>
+    can’t wait 😌
+  </p>
+  <button onclick="nextSlide()">Suivant</button>
 </div>
 
-<!-- SLIDE 4 -->
-<div class="slide">
-  <div class="card">
-    <h2>Can't wait pour le soir 👀</h2>
-    <p>
-      J’attends mon appel vidéo du soir.<br>
-      Rien que d’y penser…<br>
-      mes hormones me jouent déjà des tours 😏
-    </p>
-    <button onclick="nextSlide()">Suivant</button>
-  </div>
+<div class="card hidden" id="slide4">
+  <h1>Can't wait pour le soir 😌</h1>
+  <p>
+    J’attends mon appel vidéo du soir.<br>
+    Rien que d’y penser,<br>
+    mes hormones me jouent déjà des tours…
+  </p>
+  <button onclick="nextSlide()">Suivant</button>
 </div>
 
-<!-- SLIDE 5 -->
-<div class="slide">
-  <div class="card">
-    <h2>Ma princesse ❤️</h2>
-    <p>
-      Joyeuse Saint-Valentin mon amoureuse.<br>
-      Je t’aime fort ❤️🫂
-    </p>
-  </div>
+<div class="card hidden" id="slide5">
+  <h1>Ma princesse ❤️</h1>
+  <p>
+    Joyeuse Saint-Valentin mon amoureuse,<br>
+    je t’aime fort 🫂
+  </p>
 </div>
 
 <script>
-let current = 0;
-const slides = document.querySelectorAll('.slide');
+let current = 1;
+const music = document.getElementById("music");
 
 function nextSlide() {
-  slides[current].classList.remove('active');
+  if (current === 1) music.play();
+  document.getElementById("slide" + current).classList.add("hidden");
   current++;
-  if (current < slides.length) {
-    slides[current].classList.add('active');
-  }
+  document.getElementById("slide" + current).classList.remove("hidden");
 }
 
-const heartsContainer = document.querySelector('.hearts');
-for (let i = 0; i < 30; i++) {
-  const h = document.createElement('div');
-  h.className = 'heart';
-  h.innerText = '❤️';
-  h.style.left = Math.random() * 100 + '%';
-  h.style.animationDuration = 8 + Math.random() * 6 + 's';
-  heartsContainer.appendChild(h);
+// hearts
+for (let i = 0; i < 25; i++) {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "❤️";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.fontSize = (10 + Math.random()*20) + "px";
+  h.style.animationDuration = (8 + Math.random()*10) + "s";
+  document.body.appendChild(h);
 }
-
-document.body.addEventListener('click', () => {
-  document.getElementById('music').play();
-}, { once: true });
 </script>
 
 </body>
