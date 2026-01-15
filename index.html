@@ -1,150 +1,189 @@
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <title>Pour Sara ❤️</title>
+
 <style>
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   background: linear-gradient(180deg, #ff5f6d, #ffc371);
+  height: 100vh;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: white;
   text-align: center;
 }
 
-/* Slides */
 .slide {
-  min-height: 100vh;
   display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
+
 .slide.active {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Card */
 .card {
-  background: rgba(255,255,255,0.18);
-  border-radius: 25px;
-  padding: 35px;
-  max-width: 600px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  background: rgba(255,255,255,0.22);
+  backdrop-filter: blur(10px);
+  border-radius: 22px;
+  padding: 25px;
+  width: 80%;
+  max-width: 360px;
 }
-h1 { font-size: 2.4em; }
-p { font-size: 1.3em; line-height: 1.6; }
 
 button {
-  margin-top: 30px;
-  padding: 12px 28px;
-  font-size: 1em;
+  margin-top: 18px;
+  padding: 10px 28px;
   border: none;
-  border-radius: 30px;
+  border-radius: 20px;
   background: white;
-  color: #ff4d6d;
+  color: #ff5f6d;
+  font-weight: bold;
   cursor: pointer;
 }
 
-/* Hearts animation */
-.heart {
-  position: fixed;
-  bottom: -10px;
-  font-size: 24px;
-  animation: floatUp 8s linear infinite;
-  opacity: 0.8;
-}
-@keyframes floatUp {
-  0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+.hearts {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
-/* Music button */
-.music {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: rgba(255,255,255,0.25);
-  padding: 10px 15px;
-  border-radius: 30px;
-  font-size: 14px;
+.heart {
+  position: absolute;
+  color: rgba(255,255,255,0.35);
+  animation: float 12s infinite;
+  font-size: 18px;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+img {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 15px;
 }
 </style>
 </head>
+
 <body>
 
-<div class="music">
-  🎵 Musique activée
-</div>
-
-<audio autoplay loop>
+<audio id="music" loop>
   <source src="no_one_noticed.mp3" type="audio/mpeg">
 </audio>
 
+<div class="hearts"></div>
+
+<!-- SLIDE 1 -->
 <div class="slide active">
   <div class="card">
-    <h1>Pour toi Sara ❤️</h1>
-    <p>Mon amoureuse,<br>ce petit monde est pour toi.</p>
-    <button onclick="next()">Suivant</button>
+    <h2>Pour Sara ❤️</h2>
+    <p>
+      Mon amoureuse,<br>
+      voici un petit cadeau de ma part.<br>
+      J’espère que tu vas aimer.
+    </p>
+    <p style="font-size:14px; opacity:0.9;">
+      Active la musique 🎵
+    </p>
+    <button onclick="nextSlide()">Suivant</button>
   </div>
 </div>
 
+<!-- SLIDE 2 -->
 <div class="slide">
   <div class="card">
-    <h1>Flowers for You 🌹</h1>
-    <p>Même virtuelles,<br>ces fleurs portent mon amour.<br>Mon bébé 💕</p>
-    <button onclick="next()">Suivant</button>
+    <h2>Des fleurs pour toi 🌹</h2>
+    <p>
+      Je sais que ce ne sont pas des vraies fleurs,<br>
+      mais elles sont pour toi.<br><br>
+      Je t’aime mon amoureuse, mon bébé.
+    </p>
+
+    <img src="WhatsApp Image 2025-01-15 at 07.36.37.jpeg">
+    <img src="WhatsApp Image 2025-01-15 at 07.36.38.jpeg">
+
+    <button onclick="nextSlide()">Suivant</button>
   </div>
 </div>
 
+<!-- SLIDE 3 -->
 <div class="slide">
   <div class="card">
-    <h1>Heart 2 Heart 💌</h1>
-    <p>Tu rends ma vie plus belle.<br>Ma princesse.</p>
-    <button onclick="next()">Suivant</button>
+    <h2>Tu me manques ❤️</h2>
+    <p>
+      Mon cœur, tu me manques beaucoup.<br>
+      Même avec la distance, je pense à toi tout le temps.<br><br>
+      Je t’aime et je t’attends.<br>
+      Cet été, on va tellement s’amuser…<br>
+      j’ai trop hâte.
+    </p>
+    <button onclick="nextSlide()">Suivant</button>
   </div>
 </div>
 
+<!-- SLIDE 4 -->
 <div class="slide">
   <div class="card">
-    <h1>You + Me Forever ♾️</h1>
-    <p>Moi + Toi = Toujours.<br>Hayeto ❤️</p>
-    <button onclick="next()">Suivant</button>
+    <h2>Can't wait pour le soir 👀</h2>
+    <p>
+      J’attends mon appel vidéo du soir.<br>
+      Rien que d’y penser…<br>
+      mes hormones me jouent déjà des tours 😏
+    </p>
+    <button onclick="nextSlide()">Suivant</button>
   </div>
 </div>
 
+<!-- SLIDE 5 -->
 <div class="slide">
   <div class="card">
-    <h1>Pour toujours 💖</h1>
-    <p>Joyeuse Saint‑Valentin<br>mon amoureuse.<br>Je t’aime pour toujours.</p>
+    <h2>Ma princesse ❤️</h2>
+    <p>
+      Joyeuse Saint-Valentin mon amoureuse.<br>
+      Je t’aime fort ❤️🫂
+    </p>
   </div>
 </div>
 
 <script>
-let index = 0;
+let current = 0;
 const slides = document.querySelectorAll('.slide');
 
-function next() {
-  slides[index].classList.remove('active');
-  index++;
-  if (index < slides.length) {
-    slides[index].classList.add('active');
+function nextSlide() {
+  slides[current].classList.remove('active');
+  current++;
+  if (current < slides.length) {
+    slides[current].classList.add('active');
   }
 }
 
-// Hearts generator
-setInterval(() => {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.innerText = '❤️';
-  heart.style.left = Math.random() * 100 + 'vw';
-  heart.style.animationDuration = (6 + Math.random() * 4) + 's';
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 9000);
-}, 400);
+const heartsContainer = document.querySelector('.hearts');
+for (let i = 0; i < 30; i++) {
+  const h = document.createElement('div');
+  h.className = 'heart';
+  h.innerText = '❤️';
+  h.style.left = Math.random() * 100 + '%';
+  h.style.animationDuration = 8 + Math.random() * 6 + 's';
+  heartsContainer.appendChild(h);
+}
+
+document.body.addEventListener('click', () => {
+  document.getElementById('music').play();
+}, { once: true });
 </script>
 
 </body>
