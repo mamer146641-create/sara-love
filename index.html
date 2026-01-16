@@ -78,7 +78,7 @@ img {
   <h1>Pour Sara ❤️</h1>
   <p>Mon amoureuse,<br>voici un petit cadeau de ma part.<br>J’espère que tu vas aimer.</p>
 
-  <button onclick="startMusic()">Activer la musique 🎵</button>
+ <button id="musicBtn" onclick="startMusic()">🎵 Activer la musique</button>
   <button onclick="nextSlide()">Suivant</button>
 </div>
 
@@ -90,7 +90,7 @@ img {
 
   <img src="WhatsApp Image 2026-01-15 at 07.36.36.jpeg">
   <img src="WhatsApp Image 2026-01-15 at 07.36.37.jpeg">
-
+<button onclick="prevSlide()">⬅ Précédent</button>
   <button onclick="nextSlide()">Suivant</button>
 </div>
 
@@ -103,6 +103,7 @@ img {
     Cet été, on va tellement s’amuser.<br>
     Can’t wait ❤️
   </p>
+  <button onclick="prevSlide()">⬅ Précédent</button>
   <button onclick="nextSlide()">Suivant</button>
 </div>
 
@@ -114,6 +115,7 @@ img {
     Rien que d’y penser,<br>
     mes hormones me jouent des tours 👀
   </p>
+  <button onclick="prevSlide()">⬅ Précédent</button>
   <button onclick="nextSlide()">Suivant</button>
 </div>
 
@@ -124,20 +126,32 @@ img {
     Joyeuse Saint-Valentin mon amoureuse,<br>
     je t’aime fort 🫂
   </p>
+  <button onclick="prevSlide()">⬅ Précédent</button>
 </div>
 
 <script>
 let current = 1;
 const music = document.getElementById("music");
 
+ let musicStarted = false;
+
 function startMusic() {
-  music.volume = 0.6;
-  music.play().then(() => {
-    console.log("Musique lancée");
-  }).catch(err => {
-    alert("Appuie encore une fois sur le bouton pour lancer la musique 🎵");
-  });
-} 
+  if (!musicStarted) {
+    music.volume = 0.7;
+    music.play()
+      .then(() => {
+        musicStarted = true;
+        document.getElementById("musicBtn").innerText = "🔊 Musique activée";
+      })
+      .catch(() => {
+        alert("Appuie encore une fois sur le bouton 🎵");
+      });
+  } else {
+    music.pause();
+    musicStarted = false;
+    document.getElementById("musicBtn").innerText = "🎵 Activer la musique";
+  }
+}
 
 
 function nextSlide() {
@@ -145,7 +159,13 @@ function nextSlide() {
   current++;
   document.getElementById("slide" + current).classList.remove("hidden");
 }
-
+function prevSlide() {
+  if (current > 1) {
+    document.getElementById("slide" + current).classList.add("hidden");
+    current--;
+    document.getElementById("slide" + current).classList.remove("hidden");
+  }
+}
 // hearts
 for (let i = 0; i < 20; i++) {
   const h = document.createElement("div");
