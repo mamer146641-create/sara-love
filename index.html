@@ -69,7 +69,7 @@ img {
 
 <body>
 
-<audio id="music" loop>
+ <audio id="music" loop preload="auto">
   <source src="no_one_noticed.mp3" type="audio/mpeg">
 </audio>
 
@@ -131,8 +131,14 @@ let current = 1;
 const music = document.getElementById("music");
 
 function startMusic() {
-  music.play();
-}
+  music.volume = 0.6;
+  music.play().then(() => {
+    console.log("Musique lancée");
+  }).catch(err => {
+    alert("Appuie encore une fois sur le bouton pour lancer la musique 🎵");
+  });
+} 
+
 
 function nextSlide() {
   document.getElementById("slide" + current).classList.add("hidden");
