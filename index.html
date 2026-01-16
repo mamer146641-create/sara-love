@@ -40,7 +40,7 @@ body {
   max-width: 380px;
   max-height: 80vh;
   text-align: center;
-  overflow-y: auto; /* 🔥 SCROLL ACTIVÉ */
+  overflow-y: auto;
 }
 
 h1 { margin-top: 0; }
@@ -76,25 +76,17 @@ img {
 <!-- SLIDE 1 -->
 <div class="card" id="slide1">
   <h1>Pour Sara ❤️</h1>
-  <p>
-    Mon amoureuse,<br>
-    j’ai fait ça juste pour toi.
-  </p>
+  <p>Mon amoureuse,<br>voici un petit cadeau de ma part.<br>J’espère que tu vas aimer.</p>
 
-  <!-- BOUTON MUSIQUE -->
-  <button id="musicBtn" onclick="startMusic()">Activer la musique 🎵</button>
-
+  <button onclick="startMusic()">Activer la musique 🎵</button>
   <button onclick="nextSlide()">Suivant</button>
 </div>
 
 <!-- SLIDE 2 -->
 <div class="card hidden" id="slide2">
   <h1>Des fleurs pour toi 🌹</h1>
-  <p>
-    Je sais que ce ne sont pas des vraies fleurs,<br>
-    mais elles sont pour toi.
-  </p>
-  <p>Je t’aime mon amoureuse, mon bébé.</p>
+  <p>Je sais que ce ne sont pas des vraies fleurs,<br>mais elles sont pour toi.</p>
+  <p>Je t’aime mon amoureuse.</p>
 
   <img src="WhatsApp Image 2026-01-15 at 07.36.36.jpeg">
   <img src="WhatsApp Image 2026-01-15 at 07.36.37.jpeg">
@@ -107,22 +99,20 @@ img {
   <h1>Tu me manques ❤️</h1>
   <p>
     Malgré la distance, tu me manques beaucoup.<br>
-    Je t’aime et je t’attends.
-  </p>
-  <p>
-    Cet été, on va tellement s’amuser…<br>
-    can’t wait 😌
+    Je t’aime et je t’attends.<br>
+    Cet été, on va tellement s’amuser.<br>
+    Can’t wait ❤️
   </p>
   <button onclick="nextSlide()">Suivant</button>
 </div>
 
 <!-- SLIDE 4 -->
 <div class="card hidden" id="slide4">
-  <h1>Can't wait pour le soir 😌</h1>
+  <h1>Can’t wait pour le soir 👀</h1>
   <p>
     J’attends mon appel vidéo du soir.<br>
     Rien que d’y penser,<br>
-    mes hormones me jouent déjà des tours…
+    mes hormones me jouent des tours 👀
   </p>
   <button onclick="nextSlide()">Suivant</button>
 </div>
@@ -141,8 +131,7 @@ let current = 1;
 const music = document.getElementById("music");
 
 function startMusic() {
-  music.play().catch(()=>{});
-  document.getElementById("musicBtn").style.display = "none";
+  music.play();
 }
 
 function nextSlide() {
@@ -151,7 +140,7 @@ function nextSlide() {
   document.getElementById("slide" + current).classList.remove("hidden");
 }
 
-// Hearts animation
+// hearts
 for (let i = 0; i < 20; i++) {
   const h = document.createElement("div");
   h.className = "heart";
