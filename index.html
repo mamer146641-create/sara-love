@@ -22,29 +22,31 @@ body {
 
 .heart {
   position: absolute;
-  color: rgba(255,255,255,0.5);
-  animation: float 12s linear infinite;
+  animation: float 10s linear infinite;
+  opacity: 0.5;
 }
 
 @keyframes float {
-  from { transform: translateY(100vh); }
+  from { transform: translateY(110vh); }
   to { transform: translateY(-10vh); }
 }
 
 .card {
-  background: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.22);
   backdrop-filter: blur(10px);
   border-radius: 20px;
-  padding: 25px;
+  padding: 20px;
   width: 90%;
   max-width: 380px;
+  max-height: 80vh;
   text-align: center;
+  overflow-y: auto; /* 🔥 SCROLL ACTIVÉ */
 }
 
 h1 { margin-top: 0; }
 
 button {
-  margin-top: 20px;
+  margin: 15px auto;
   padding: 10px 25px;
   border: none;
   border-radius: 20px;
@@ -52,12 +54,13 @@ button {
   color: #ff6b6b;
   font-size: 16px;
   cursor: pointer;
+  display: block;
 }
 
 img {
   width: 100%;
   border-radius: 15px;
-  margin-top: 15px;
+  margin: 10px 0;
 }
 
 .hidden { display: none; }
@@ -70,19 +73,21 @@ img {
   <source src="no_one_noticed.mp3" type="audio/mpeg">
 </audio>
 
-<div id="hearts"></div>
-
+<!-- SLIDE 1 -->
 <div class="card" id="slide1">
   <h1>Pour Sara ❤️</h1>
   <p>
     Mon amoureuse,<br>
-    voici un petit cadeau de ma part.<br>
-    J’espère que tu vas aimer.
+    j’ai fait ça juste pour toi.
   </p>
-  <p><em>Pense à activer la musique 🎶</em></p>
+
+  <!-- BOUTON MUSIQUE -->
+  <button id="musicBtn" onclick="startMusic()">Activer la musique 🎵</button>
+
   <button onclick="nextSlide()">Suivant</button>
 </div>
 
+<!-- SLIDE 2 -->
 <div class="card hidden" id="slide2">
   <h1>Des fleurs pour toi 🌹</h1>
   <p>
@@ -97,6 +102,7 @@ img {
   <button onclick="nextSlide()">Suivant</button>
 </div>
 
+<!-- SLIDE 3 -->
 <div class="card hidden" id="slide3">
   <h1>Tu me manques ❤️</h1>
   <p>
@@ -110,6 +116,7 @@ img {
   <button onclick="nextSlide()">Suivant</button>
 </div>
 
+<!-- SLIDE 4 -->
 <div class="card hidden" id="slide4">
   <h1>Can't wait pour le soir 😌</h1>
   <p>
@@ -120,6 +127,7 @@ img {
   <button onclick="nextSlide()">Suivant</button>
 </div>
 
+<!-- SLIDE 5 -->
 <div class="card hidden" id="slide5">
   <h1>Ma princesse ❤️</h1>
   <p>
@@ -132,21 +140,25 @@ img {
 let current = 1;
 const music = document.getElementById("music");
 
+function startMusic() {
+  music.play().catch(()=>{});
+  document.getElementById("musicBtn").style.display = "none";
+}
+
 function nextSlide() {
-  if (current === 1) music.play();
   document.getElementById("slide" + current).classList.add("hidden");
   current++;
   document.getElementById("slide" + current).classList.remove("hidden");
 }
 
-// hearts
-for (let i = 0; i < 25; i++) {
+// Hearts animation
+for (let i = 0; i < 20; i++) {
   const h = document.createElement("div");
   h.className = "heart";
   h.innerHTML = "❤️";
   h.style.left = Math.random() * 100 + "vw";
-  h.style.fontSize = (10 + Math.random()*20) + "px";
-  h.style.animationDuration = (8 + Math.random()*10) + "s";
+  h.style.fontSize = (12 + Math.random()*18) + "px";
+  h.style.animationDuration = (6 + Math.random()*8) + "s";
   document.body.appendChild(h);
 }
 </script>
