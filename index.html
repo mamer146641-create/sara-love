@@ -1,114 +1,123 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Pour Sara ❤️</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pour Sara ❤️</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(180deg, #ff5f6d, #ffc371);
-  height: 100vh;
-  overflow-x: hidden;
-  color: white;
+* {
+  box-sizing: border-box;
+  font-family: "Georgia", serif;
 }
 
-/* CARDS */
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ff6b6b, #ffb88c);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hearts background */
+.heart {
+  position: fixed;
+  top: -10%;
+  color: rgba(255,255,255,0.6);
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  to { transform: translateY(120vh); }
+}
+
+/* Slides */
 .card {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(255,255,255,0.15);
-  padding: 25px;
-  border-radius: 15px;
   width: 90%;
   max-width: 420px;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
   text-align: center;
-  transition: transform 0.8s ease, opacity 0.8s ease;
-  transform-origin: left center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  animation: pageIn 0.8s ease;
 }
 
 .hidden {
   display: none;
 }
 
-/* PAGE TURN */
-.turn-out {
-  transform: translate(-50%, -50%) rotateY(-90deg);
-  opacity: 0;
+@keyframes pageIn {
+  from { transform: rotateY(-90deg); opacity: 0; }
+  to { transform: rotateY(0); opacity: 1; }
 }
 
-.turn-in {
-  transform: translate(-50%, -50%) rotateY(0deg);
-  opacity: 1;
+/* Buttons */
+.controls {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 
-/* BUTTONS */
 button {
-  margin-top: 15px;
-  padding: 10px 18px;
   border: none;
-  border-radius: 25px;
+  padding: 12px 20px;
+  border-radius: 30px;
   background: white;
-  color: #ff5f6d;
+  color: #ff5a5f;
   font-size: 16px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-/* CAT BUTTON */
-.next-btn::after {
-  content: " 🐈‍⬛";
+/* Cat */
+.cat {
+  width: 28px;
+  animation: bounce 1.5s infinite;
+}
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
-/* HEARTS */
-.heart {
-  position: fixed;
-  bottom: -10px;
-  animation: floatUp linear infinite;
-  pointer-events: none;
-}
-
-@keyframes floatUp {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(-100vh); opacity: 0; }
-}
-
-/* TYPEWRITER */
-.typewriter {
-  white-space: pre-line;
-}
-
-/* LETTER */
+/* Letter */
 .letter {
-  overflow-y: auto;
-  max-height: 80vh;
-}
-
-.paper {
-  background: #f5e7c4;
-  color: #4b3b2a;
+  background: #f5e6c8;
+  border-radius: 10px;
   padding: 25px;
-  border-radius: 12px;
-  font-family: Georgia, serif;
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.15);
-  animation: fadeIn 1.5s ease;
+  color: #3b2f2f;
   position: relative;
-}
-
-.stamp {
-  width: 80px;
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  transform: rotate(-8deg);
+  animation: fadeIn 1.5s ease;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.stamp {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 90px;
+  border-radius: 10px;
+  transform: rotate(8deg);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Typing effect */
+.typing span {
+  opacity: 0;
+  animation: type 0.04s forwards;
+}
+@keyframes type {
+  to { opacity: 1; }
 }
 </style>
 </head>
@@ -122,137 +131,115 @@ button {
 <!-- SLIDE 1 -->
 <div class="card" id="slide1">
   <h1>Pour Sara ❤️</h1>
-  <p class="typewriter">
-Mon amoureuse,
-voici un petit cadeau de ma part.
-J’espère que tu vas aimer.
-  </p>
-  <button onclick="startMusic()">🎵 Activer la musique</button>
-  <button class="next-btn" onclick="nextSlide()">Suivant</button>
+  <p>Mon amoureuse,<br>voici un petit cadeau de ma part.<br>J’espère que tu vas aimer.</p>
+  <div class="controls">
+    <button onclick="startMusic()">🎵 Musique</button>
+    <button onclick="nextSlide()">Suivant <img src="black-cat.png" class="cat"></button>
+  </div>
 </div>
 
 <!-- SLIDE 2 -->
 <div class="card hidden" id="slide2">
   <h1>Des fleurs pour toi 🌹</h1>
-  <p class="typewriter">
-Je sais que ce ne sont pas des vraies fleurs,
-mais elles sont pour toi.
-Je t’aime mon amoureuse.
-  </p>
-  <img src="WhatsApp Image 2026-01-15 at 07.36.36.jpeg" width="80%">
-  <img src="WhatsApp Image 2026-01-15 at 07.36.37.jpeg" width="80%">
-  <button class="next-btn" onclick="nextSlide()">Suivant</button>
+  <p>Je sais que ce ne sont pas des vraies fleurs,<br>mais elles sont pour toi.<br>Je t’aime mon amoureuse.</p>
+  <div class="controls">
+    <button onclick="prevSlide()">⬅</button>
+    <button onclick="nextSlide()">Suivant <img src="black-cat.png" class="cat"></button>
+  </div>
 </div>
 
 <!-- SLIDE 3 -->
 <div class="card hidden" id="slide3">
   <h1>Tu me manques ❤️</h1>
-  <p class="typewriter">
-Malgré la distance, tu me manques beaucoup.
-Je t’aime et je t’attends.
-Cet été, on va tellement s’amuser.
-Can’t wait ❤️
-  </p>
-  <button class="next-btn" onclick="nextSlide()">Suivant</button>
+  <p>Malgré la distance, tu me manques beaucoup.<br>Je t’aime et je t’attends.<br>Can’t wait.</p>
+  <div class="controls">
+    <button onclick="prevSlide()">⬅</button>
+    <button onclick="nextSlide()">Suivant <img src="black-cat.png" class="cat"></button>
+  </div>
 </div>
 
 <!-- SLIDE 4 -->
 <div class="card hidden" id="slide4">
   <h1>Can’t wait pour le soir 👀</h1>
-  <p class="typewriter">
-J’attends mon appel vidéo du soir.
-Rien que d’y penser,
-mes hormones me jouent des tours 👀
-  </p>
-  <button class="next-btn" onclick="nextSlide()">Suivant</button>
+  <p>J’attends mon appel vidéo du soir.<br>Rien que d’y penser, mes hormones me jouent des tours 👀</p>
+  <div class="controls">
+    <button onclick="prevSlide()">⬅</button>
+    <button onclick="nextSlide()">Suivant <img src="black-cat.png" class="cat"></button>
+  </div>
 </div>
 
-<!-- SLIDE 5 -->
+<!-- SLIDE 5 LETTER -->
 <div class="card hidden" id="slide5">
-  <h1>Ma princesse ❤️</h1>
-  <p class="typewriter">
-Joyeuse Saint-Valentin mon amoureuse,
-je t’aime fort 🫂❤️
-  </p>
-  <button class="next-btn" onclick="nextSlide()">Suivant</button>
-</div>
-
-<!-- SLIDE 6 - LETTER -->
-<div class="card hidden letter" id="slide6">
-  <div class="paper">
+  <div class="letter typing" id="letter">
+    <img src="black-cat.png" class="stamp">
     <h2>Ma lettre pour toi 💌</h2>
-    <p class="typewriter">
-COLLE TA LETTRE ICI
-(et elle s’écrira toute seule)
+    <p>
+      coucou mon amoureuse je tecris cette lettre parce que je sais que tu aime bien ça et je suis l’ecrire pour te dire a quelle point je t’aime et je suis fière d’être ton gars jespere que tu sais a quelle point je suis sincère et que je suis tres serieux dans notre relation joyeuse saint Valentin mon amoureuse toi
     </p>
-    <img src="stamp.png" class="stamp">
+  </div>
+  <div class="controls">
+    <button onclick="prevSlide()">⬅</button>
+    <button onclick="restart()">Restart 🔁</button>
   </div>
 </div>
 
 <script>
 let current = 1;
+const total = 5;
 const music = document.getElementById("music");
 let musicStarted = false;
 
 function startMusic() {
   if (!musicStarted) {
     music.volume = 0.7;
-    music.play().then(() => {
-      musicStarted = true;
-    }).catch(() => {
-      alert("Appuie encore une fois pour lancer la musique 🎵");
-    });
+    music.play();
+    musicStarted = true;
   }
 }
 
 function nextSlide() {
-  const currentSlide = document.getElementById("slide" + current);
-  currentSlide.classList.add("turn-out");
-
-  setTimeout(() => {
-    currentSlide.classList.add("hidden");
-    currentSlide.classList.remove("turn-out");
-    current++;
-
-    const next = document.getElementById("slide" + current);
-    next.classList.remove("hidden");
-    next.classList.add("turn-in");
-
-    setTimeout(() => {
-      next.classList.remove("turn-in");
-      next.querySelectorAll(".typewriter").forEach(el => typeWriter(el));
-    }, 800);
-  }, 800);
+  document.getElementById("slide"+current).classList.add("hidden");
+  current++;
+  showSlide();
 }
 
-function typeWriter(element) {
-  const text = element.innerText;
-  element.innerText = "";
-  let i = 0;
+function prevSlide() {
+  document.getElementById("slide"+current).classList.add("hidden");
+  current--;
+  showSlide();
+}
 
-  function write() {
-    if (i < text.length) {
-      element.innerText += text.charAt(i);
-      i++;
-      setTimeout(write, 35);
-    }
+function showSlide() {
+  const slide = document.getElementById("slide"+current);
+  slide.classList.remove("hidden");
+
+  const typing = slide.querySelector(".typing p");
+  if (typing) {
+    const text = typing.innerText;
+    typing.innerHTML = "";
+    [...text].forEach((char, i) => {
+      const span = document.createElement("span");
+      span.textContent = char;
+      span.style.animationDelay = `${i * 0.03}s`;
+      typing.appendChild(span);
+    });
   }
-  write();
 }
 
-// hearts
-for (let i = 0; i < 20; i++) {
+function restart() {
+  location.reload();
+}
+
+/* hearts */
+for (let i = 0; i < 25; i++) {
   const h = document.createElement("div");
   h.className = "heart";
   h.innerHTML = "❤️";
-  h.style.left = Math.random() * 100 + "vw";
-  h.style.fontSize = (12 + Math.random() * 18) + "px";
-  h.style.animationDuration = (6 + Math.random() * 8) + "s";
+  h.style.left = Math.random()*100 + "vw";
+  h.style.fontSize = (12 + Math.random()*20) + "px";
+  h.style.animationDuration = (6 + Math.random()*6) + "s";
   document.body.appendChild(h);
 }
-
-// start typewriter on first slide
-document.querySelectorAll("#slide1 .typewriter").forEach(el => typeWriter(el));
 </script>
 
 </body>
