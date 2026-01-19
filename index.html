@@ -6,176 +6,253 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-* { box-sizing: border-box; }
-
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #ff5f6d, #ffc371);
   height: 100vh;
-  background: linear-gradient(180deg, #ff6b6b, #ffb86c);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  overflow-x: hidden;
   color: white;
 }
 
-.heart {
-  position: absolute;
-  animation: float 10s linear infinite;
-  opacity: 0.5;
-}
-
-@keyframes float {
-  from { transform: translateY(110vh); }
-  to { transform: translateY(-10vh); }
-}
-
+/* CARDS */
 .card {
-  background: rgba(255,255,255,0.22);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.15);
+  padding: 25px;
+  border-radius: 15px;
   width: 90%;
-  max-width: 380px;
-  max-height: 80vh;
+  max-width: 420px;
   text-align: center;
-  overflow-y: auto;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+  transform-origin: left center;
 }
 
-h1 { margin-top: 0; }
+.hidden {
+  display: none;
+}
 
+/* PAGE TURN */
+.turn-out {
+  transform: translate(-50%, -50%) rotateY(-90deg);
+  opacity: 0;
+}
+
+.turn-in {
+  transform: translate(-50%, -50%) rotateY(0deg);
+  opacity: 1;
+}
+
+/* BUTTONS */
 button {
-  margin: 15px auto;
-  padding: 10px 25px;
+  margin-top: 15px;
+  padding: 10px 18px;
   border: none;
-  border-radius: 20px;
+  border-radius: 25px;
   background: white;
-  color: #ff6b6b;
+  color: #ff5f6d;
   font-size: 16px;
   cursor: pointer;
-  display: block;
 }
 
-img {
-  width: 100%;
-  border-radius: 15px;
-  margin: 10px 0;
+/* CAT BUTTON */
+.next-btn::after {
+  content: " 🐈‍⬛";
 }
 
-.hidden { display: none; }
+/* HEARTS */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  animation: floatUp linear infinite;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* TYPEWRITER */
+.typewriter {
+  white-space: pre-line;
+}
+
+/* LETTER */
+.letter {
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.paper {
+  background: #f5e7c4;
+  color: #4b3b2a;
+  padding: 25px;
+  border-radius: 12px;
+  font-family: Georgia, serif;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.15);
+  animation: fadeIn 1.5s ease;
+  position: relative;
+}
+
+.stamp {
+  width: 80px;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  transform: rotate(-8deg);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 </style>
 </head>
 
 <body>
 
- <audio id="music" loop preload="auto">
+<audio id="music" loop preload="auto">
   <source src="no_one_noticed.mp3" type="audio/mpeg">
 </audio>
 
 <!-- SLIDE 1 -->
 <div class="card" id="slide1">
   <h1>Pour Sara ❤️</h1>
-  <p>Mon amoureuse,<br>voici un petit cadeau de ma part si tu le recois cest que ton autre cadeau est arrive j'espere que tu vas kiffer.<br>J’espère que tu vas aimer.</p>
-
- <button id="musicBtn" onclick="startMusic()">🎵 Activer la musique</button>
-  <button onclick="nextSlide()">Suivant</button>
+  <p class="typewriter">
+Mon amoureuse,
+voici un petit cadeau de ma part.
+J’espère que tu vas aimer.
+  </p>
+  <button onclick="startMusic()">🎵 Activer la musique</button>
+  <button class="next-btn" onclick="nextSlide()">Suivant</button>
 </div>
 
 <!-- SLIDE 2 -->
 <div class="card hidden" id="slide2">
   <h1>Des fleurs pour toi 🌹</h1>
-  <p>Je sais que ce ne sont pas des vraies fleurs,<br>mais elles sont pour toi.</p>
-  <p>Je t’aime mon amoureuse.</p>
-
-  <img src="WhatsApp Image 2026-01-15 at 07.36.36.jpeg">
-  <img src="WhatsApp Image 2026-01-15 at 07.36.37.jpeg">
-<button onclick="prevSlide()">⬅ Précédent</button>
-  <button onclick="nextSlide()">Suivant</button>
+  <p class="typewriter">
+Je sais que ce ne sont pas des vraies fleurs,
+mais elles sont pour toi.
+Je t’aime mon amoureuse.
+  </p>
+  <img src="WhatsApp Image 2026-01-15 at 07.36.36.jpeg" width="80%">
+  <img src="WhatsApp Image 2026-01-15 at 07.36.37.jpeg" width="80%">
+  <button class="next-btn" onclick="nextSlide()">Suivant</button>
 </div>
 
 <!-- SLIDE 3 -->
 <div class="card hidden" id="slide3">
   <h1>Tu me manques ❤️</h1>
-  <p>
-    Malgré la distance, tu me manques beaucoup.<br>
-    Je t’aime et je t’attends.<br>
-    Cet été, on va tellement s’amuser.<br>
-    Can’t wait ❤️
+  <p class="typewriter">
+Malgré la distance, tu me manques beaucoup.
+Je t’aime et je t’attends.
+Cet été, on va tellement s’amuser.
+Can’t wait ❤️
   </p>
-  <button onclick="prevSlide()">⬅ Précédent</button>
-  <button onclick="nextSlide()">Suivant</button>
+  <button class="next-btn" onclick="nextSlide()">Suivant</button>
 </div>
 
 <!-- SLIDE 4 -->
 <div class="card hidden" id="slide4">
   <h1>Can’t wait pour le soir 👀</h1>
-  <p>
-    J’attends mon appel vidéo du soir.<br>
-    Rien que d’y penser,<br>
-    mes hormones me jouent des tours 👀
+  <p class="typewriter">
+J’attends mon appel vidéo du soir.
+Rien que d’y penser,
+mes hormones me jouent des tours 👀
   </p>
-  <button onclick="prevSlide()">⬅ Précédent</button>
-  <button onclick="nextSlide()">Suivant</button>
+  <button class="next-btn" onclick="nextSlide()">Suivant</button>
 </div>
 
 <!-- SLIDE 5 -->
 <div class="card hidden" id="slide5">
   <h1>Ma princesse ❤️</h1>
-  <p>
-    Joyeuse Saint-Valentin mon amoureuse,<br>
-    je t’aime fort 🫂
+  <p class="typewriter">
+Joyeuse Saint-Valentin mon amoureuse,
+je t’aime fort 🫂❤️
   </p>
-  <button onclick="prevSlide()">⬅ Précédent</button>
+  <button class="next-btn" onclick="nextSlide()">Suivant</button>
+</div>
+
+<!-- SLIDE 6 - LETTER -->
+<div class="card hidden letter" id="slide6">
+  <div class="paper">
+    <h2>Ma lettre pour toi 💌</h2>
+    <p class="typewriter">
+COLLE TA LETTRE ICI
+(et elle s’écrira toute seule)
+    </p>
+    <img src="stamp.png" class="stamp">
+  </div>
 </div>
 
 <script>
 let current = 1;
 const music = document.getElementById("music");
-
- let musicStarted = false;
+let musicStarted = false;
 
 function startMusic() {
   if (!musicStarted) {
     music.volume = 0.7;
-    music.play()
-      .then(() => {
-        musicStarted = true;
-        document.getElementById("musicBtn").innerText = "🔊 Musique activée";
-      })
-      .catch(() => {
-        alert("Appuie encore une fois sur le bouton 🎵");
-      });
-  } else {
-    music.pause();
-    musicStarted = false;
-    document.getElementById("musicBtn").innerText = "🎵 Activer la musique";
+    music.play().then(() => {
+      musicStarted = true;
+    }).catch(() => {
+      alert("Appuie encore une fois pour lancer la musique 🎵");
+    });
   }
 }
-
 
 function nextSlide() {
-  document.getElementById("slide" + current).classList.add("hidden");
-  current++;
-  document.getElementById("slide" + current).classList.remove("hidden");
+  const currentSlide = document.getElementById("slide" + current);
+  currentSlide.classList.add("turn-out");
+
+  setTimeout(() => {
+    currentSlide.classList.add("hidden");
+    currentSlide.classList.remove("turn-out");
+    current++;
+
+    const next = document.getElementById("slide" + current);
+    next.classList.remove("hidden");
+    next.classList.add("turn-in");
+
+    setTimeout(() => {
+      next.classList.remove("turn-in");
+      next.querySelectorAll(".typewriter").forEach(el => typeWriter(el));
+    }, 800);
+  }, 800);
 }
-function prevSlide() {
-  if (current > 1) {
-    document.getElementById("slide" + current).classList.add("hidden");
-    current--;
-    document.getElementById("slide" + current).classList.remove("hidden");
+
+function typeWriter(element) {
+  const text = element.innerText;
+  element.innerText = "";
+  let i = 0;
+
+  function write() {
+    if (i < text.length) {
+      element.innerText += text.charAt(i);
+      i++;
+      setTimeout(write, 35);
+    }
   }
+  write();
 }
+
 // hearts
 for (let i = 0; i < 20; i++) {
   const h = document.createElement("div");
   h.className = "heart";
   h.innerHTML = "❤️";
   h.style.left = Math.random() * 100 + "vw";
-  h.style.fontSize = (12 + Math.random()*18) + "px";
-  h.style.animationDuration = (6 + Math.random()*8) + "s";
+  h.style.fontSize = (12 + Math.random() * 18) + "px";
+  h.style.animationDuration = (6 + Math.random() * 8) + "s";
   document.body.appendChild(h);
 }
+
+// start typewriter on first slide
+document.querySelectorAll("#slide1 .typewriter").forEach(el => typeWriter(el));
 </script>
 
 </body>
