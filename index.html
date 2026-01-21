@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -6,221 +6,258 @@
 <title>Pour Sara ❤️</title>
 
 <style>
-*{box-sizing:border-box;font-family:"Georgia",serif}
-body{
-margin:0;
-height:100vh;
-overflow:hidden;
-background:linear-gradient(180deg,#ff6b6b,#ffb36b);
-display:flex;
-align-items:center;
-justify-content:center;
+* {
+  box-sizing: border-box;
+  font-family: "Georgia", serif;
 }
 
-.heart{
-position:fixed;
-top:-10px;
-color:#ff2e63;
-animation:fall linear infinite;
-pointer-events:none;
-}
-@keyframes fall{
-to{transform:translateY(110vh);opacity:0}
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ff6f6f, #ffb347);
 }
 
-.card{
-width:90%;
-max-width:420px;
-background:rgba(255,255,255,0.25);
-border-radius:20px;
-padding:25px;
-text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-backdrop-filter:blur(6px);
-animation:pageIn 0.6s ease;
-}
-.hidden{display:none}
-
-@keyframes pageIn{
-from{transform:rotateY(-90deg);opacity:0}
-to{transform:rotateY(0);opacity:1}
+.heart {
+  position: fixed;
+  top: -10px;
+  animation: fall linear infinite;
+  color: red;
+  opacity: 0.7;
 }
 
-h1{margin-top:0}
-
-button{
-border:none;
-padding:12px 18px;
-border-radius:25px;
-background:#fff;
-color:#ff2e63;
-font-size:16px;
-margin:8px;
-cursor:pointer;
-display:inline-flex;
-align-items:center;
-gap:8px;
+@keyframes fall {
+  to { transform: translateY(110vh); }
 }
 
-button img{
-width:26px;
-height:26px;
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
 }
 
-.letter{
-background:#f5e6c8;
-color:#3b2f2f;
-padding:20px;
-border-radius:12px;
-box-shadow:inset 0 0 15px rgba(0,0,0,0.15);
-animation:fadeIn 1s ease;
-}
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(10px)}
-to{opacity:1;transform:translateY(0)}
-}
-
-.photo-stamp{
-width:90px;
-border-radius:8px;
-transform:rotate(-5deg);
-margin:10px auto;
-display:block;
+.card {
+  width: 90%;
+  max-width: 420px;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  animation: pageIn 0.8s ease;
+  position: absolute;
 }
 
-.type{
-border-right:2px solid #333;
-white-space:pre-wrap;
-overflow:hidden;
+@keyframes pageIn {
+  from { transform: rotateY(-90deg); opacity: 0; }
+  to { transform: rotateY(0); opacity: 1; }
 }
 
-img.flower{
-width:45%;
-margin:5px;
-border-radius:12px;
+.hidden {
+  display: none;
 }
 
-audio{display:none}
+h1 {
+  margin-top: 0;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 18px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  background: white;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+button img {
+  width: 28px;
+}
+
+/* LETTRE */
+.letter {
+  background: #f5e6c8;
+  padding: 25px;
+  border-radius: 15px;
+  position: relative;
+  color: #3b2f2f;
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; }
+}
+
+.stamp {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 90px;
+  transform: rotate(10deg);
+}
+
+.type {
+  white-space: pre-wrap;
+  border-right: 2px solid #000;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
 </style>
 </head>
 
 <body>
 
 <audio id="music" loop>
-<source src="no_one_noticed.mp3" type="audio/mpeg">
+  <source src="no_one_noticed.mp3" type="audio/mpeg">
 </audio>
+
+<div class="container">
 
 <!-- SLIDE 1 -->
 <div class="card" id="slide1">
-<h1>Pour Sara ❤️</h1>
-<p>Mon amoureuse,<br>voici un petit cadeau de ma part.<br>J’espère que tu vas aimer.</p>
-<button onclick="toggleMusic()">🎵 Activer la musique</button><br>
-<button onclick="next()">Suivant <img src="black-cat.png"></button>
+  <h1>Pour Sara ❤️</h1>
+  <p>Mon amoureuse,<br>voici un petit cadeau de ma part.<br>J’espère que tu vas aimer.</p>
+
+  <button onclick="startMusic()">🎵 Activer la musique</button>
+  <button onclick="nextSlide()">
+    Suivant <img src="black-cat.png">
+  </button>
 </div>
 
 <!-- SLIDE 2 -->
 <div class="card hidden" id="slide2">
-<h1>Des fleurs pour toi 🌹</h1>
-<p>Je sais que ce ne sont pas des vraies fleurs,<br>mais elles sont pour toi.<br>Je t’aime mon amoureuse.</p>
-<img class="flower" src="WhatsApp%20Image%202026-01-15%20at%2007.36.36.jpeg">
-<img class="flower" src="WhatsApp%20Image%202026-01-15%20at%2007.36.37.jpeg">
-<br>
-<button onclick="prev()">⬅️</button>
-<button onclick="next()">Suivant <img src="black-cat.png"></button>
+  <h1>Des fleurs pour toi 🌹</h1>
+  <p>Je sais que ce ne sont pas des vraies fleurs,<br>mais elles sont pour toi.</p>
+  <p>Je t’aime mon amoureuse.</p>
+
+  <div class="controls">
+    <button onclick="prevSlide()">⬅</button>
+    <button onclick="nextSlide()">Suivant <img src="black-cat.png"></button>
+  </div>
 </div>
 
 <!-- SLIDE 3 -->
 <div class="card hidden" id="slide3">
-<h1>Tu me manques ❤️</h1>
-<p class="type" data-text="Malgré la distance, tu me manques beaucoup.
-Je t’aime et je t’attends.
-Cet été on va tellement s’amuser. Can't wait. ❤️"></p>
-<br>
-<button onclick="prev()">⬅️</button>
-<button onclick="next()">Suivant <img src="black-cat.png"></button>
+  <h1>Tu me manques ❤️</h1>
+  <p>Malgré la distance, tu me manques beaucoup.<br>
+  Je t’aime et je t’attends.<br>
+  Cet été, on va tellement s’amuser.<br>
+  Can't wait ❤️</p>
+
+  <div class="controls">
+    <button onclick="prevSlide()">⬅</button>
+    <button onclick="nextSlide()">Suivant <img src="black-cat.png"></button>
+  </div>
 </div>
 
 <!-- SLIDE 4 -->
 <div class="card hidden" id="slide4">
-<h1>Can’t wait pour le soir 👀</h1>
-<p class="type" data-text="J’attends mon appel vidéo du soir.
-Rien que d’y penser, mes hormones me jouent des tours 👀"></p>
-<br>
-<button onclick="prev()">⬅️</button>
-<button onclick="next()">Suivant <img src="black-cat.png"></button>
+  <h1>Can't wait 👀</h1>
+  <p>J’attends mon appel vidéo du soir.<br>
+  Rien que d’y penser, mes hormones me jouent des tours 👀</p>
+
+  <div class="controls">
+    <button onclick="prevSlide()">⬅</button>
+    <button onclick="nextSlide()">Suivant <img src="black-cat.png"></button>
+  </div>
 </div>
 
-<!-- SLIDE 5 -->
+<!-- SLIDE 5 : LETTRE -->
 <div class="card hidden" id="slide5">
-<h1>Ma lettre pour toi 💌</h1>
-<img class="photo-stamp" src="WhatsApp%20Image%202026-01-15%20at%2007.36.36.jpeg">
-<div class="letter type" data-text="Coucou mon amoureuse,
-je t’écris cette lettre parce que je sais que tu aimes bien ça.
-Je suis là pour te dire à quel point je t’aime et je suis fier d’être ton gars.
-J’espère que tu sais à quel point je suis sincère et très sérieux dans notre relation.
-Joyeuse Saint-Valentin mon amoureuse, toi ❤️"></div>
-<br>
-<button onclick="prev()">⬅️</button>
-<button onclick="restart()">🔁 Restart</button>
+  <h1>Ma lettre pour toi 💌</h1>
+
+  <div class="letter">
+    <img src="stamp.png" class="stamp">
+
+    <div id="letterText" class="type"></div>
+  </div>
+
+  <div class="controls">
+    <button onclick="prevSlide()">⬅</button>
+    <button onclick="restart()">Restart 🔁</button>
+  </div>
+</div>
+
 </div>
 
 <script>
-let current=1;
-const music=document.getElementById("music");
-let musicOn=false;
+let current = 1;
+const total = 5;
+const music = document.getElementById("music");
+let musicStarted = false;
 
-function toggleMusic(){
-if(!musicOn){
-music.volume=0.6;
-music.play();
-musicOn=true;
-}else{
-music.pause();
-musicOn=false;
-}
+function startMusic() {
+  if (!musicStarted) {
+    music.volume = 0.7;
+    music.play();
+    musicStarted = true;
+  }
 }
 
-function showType(slide){
-slide.querySelectorAll(".type").forEach(el=>{
-const text=el.dataset.text;
-el.textContent="";
-let i=0;
-const interval=setInterval(()=>{
-el.textContent+=text[i];
-i++;
-if(i>=text.length)clearInterval(interval);
-},30);
-});
+function nextSlide() {
+  if (current < total) {
+    document.getElementById("slide"+current).classList.add("hidden");
+    current++;
+    document.getElementById("slide"+current).classList.remove("hidden");
+    if (current === 5) typeLetter();
+  }
 }
 
-function next(){
-document.getElementById("slide"+current).classList.add("hidden");
-current++;
-const s=document.getElementById("slide"+current);
-s.classList.remove("hidden");
-showType(s);
+function prevSlide() {
+  if (current > 1) {
+    document.getElementById("slide"+current).classList.add("hidden");
+    current--;
+    document.getElementById("slide"+current).classList.remove("hidden");
+  }
 }
 
-function prev(){
-document.getElementById("slide"+current).classList.add("hidden");
-current--;
-const s=document.getElementById("slide"+current);
-s.classList.remove("hidden");
-showType(s);
+function restart() {
+  location.reload();
 }
 
-function restart(){
-location.reload();
+/* COEURS */
+for (let i=0;i<25;i++) {
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(12+Math.random()*20)+"px";
+  h.style.animationDuration=(6+Math.random()*6)+"s";
+  document.body.appendChild(h);
 }
 
-for(let i=0;i<25;i++){
-const h=document.createElement("div");
-h.className="heart";
-h.textContent="❤️";
-h.style.left=Math.random()*100+"vw";
-h.style.fontSize=12+Math.random()*18+"px";
-h.style.animationDuration=5+Math.random()*6+"s";
-document.body.appendChild(h);
+/* LETTRE */
+const letter =
+`coucou mon amoureuse je t’écris cette lettre parce que je sais que tu aime bien ça et je suis l’écrire pour te dire à quel point je t’aime et je suis fière d’être ton gars j’espère que tu sais à quel point je suis sincère et que je suis très sérieux dans notre relation joyeuse saint Valentin mon amoureuse toi ❤️`;
+
+let index = 0;
+function typeLetter() {
+  const el = document.getElementById("letterText");
+  el.innerHTML = "";
+  index = 0;
+  const interval = setInterval(()=>{
+    el.innerHTML += letter.charAt(index);
+    index++;
+    if(index>=letter.length) clearInterval(interval);
+  },40);
 }
 </script>
 
