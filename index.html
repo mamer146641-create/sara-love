@@ -1,20 +1,41 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pour Sara ❤️</title>
 
 <style>
 *{box-sizing:border-box}
 body{
-margin:0;height:100vh;overflow:hidden;
+margin:0;
+height:100vh;
+overflow:hidden;
 background:linear-gradient(180deg,#ff6f6f,#ffb347);
-font-family:Georgia,serif
+font-family:Georgia,serif;
 }
-.heart{position:fixed;top:-20px;animation:fall linear infinite;opacity:.55;pointer-events:none}
-@keyframes fall{to{transform:translateY(115vh)}}
-.container{width:100%;height:100%;display:flex;justify-content:center;align-items:center;perspective:1200px}
+
+/* Hearts */
+.heart{
+position:fixed;
+top:-20px;
+animation:fall linear infinite;
+opacity:.55;
+pointer-events:none;
+}
+@keyframes fall{
+to{transform:translateY(110vh)}
+}
+
+.container{
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+perspective:1200px;
+}
+
 .card{
 width:min(92vw,520px);
 max-height:86vh;
@@ -26,147 +47,259 @@ padding:22px;
 text-align:center;
 box-shadow:0 14px 42px rgba(0,0,0,.25);
 position:absolute;
-animation:pageIn .75s ease
+animation:pageIn .7s ease;
 }
-@keyframes pageIn{from{transform:rotateY(-75deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes pageIn{
+from{transform:rotateY(-70deg);opacity:0}
+to{transform:none;opacity:1}
+}
+
 .hidden{display:none}
+
 h1{margin:6px 0 14px;font-size:clamp(28px,6vw,44px)}
 p{margin:10px 0;font-size:clamp(16px,3.8vw,20px);line-height:1.45}
-.controls{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+
+.controls{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:18px;
+}
+
 .btn{
-border:none;cursor:pointer;border-radius:999px;
-padding:12px 16px;font-size:16px;
-background:white;box-shadow:0 10px 22px rgba(0,0,0,.18);
-display:flex;align-items:center;gap:10px
+border:none;
+cursor:pointer;
+border-radius:999px;
+padding:12px 16px;
+font-size:16px;
+background:white;
+box-shadow:0 10px 22px rgba(0,0,0,.18);
+display:flex;
+align-items:center;
+gap:10px;
 }
-.nextBtn{position:relative;padding-right:58px}
-.nextBtn img{position:absolute;right:10px;bottom:2px;width:40px}
-.musicBtn{width:100%;margin-top:10px}
-.flowers{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px}
-.flowers img{width:min(42vw,170px);border-radius:16px;box-shadow:0 8px 18px rgba(0,0,0,.25)}
+
+.nextBtn{
+position:relative;
+padding-right:58px;
+}
+.nextBtn img{
+position:absolute;
+right:10px;
+bottom:2px;
+width:40px;
+}
+
+/* Valentine */
+.valWrap{display:flex;flex-direction:column;align-items:center;gap:10px}
+.valWrap img{width:min(70vw,260px)}
+.valButtons{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.valBtn{
+border:none;
+border-radius:8px;
+padding:10px 18px;
+color:#fff;
+cursor:pointer;
+}
+.valYes{background:#1f9d55}
+.valNo{background:#e3342f}
+.valYay{font-size:48px;color:pink;font-weight:bold;margin-top:10px}
+
+/* Flowers */
+.flowers{
+display:flex;
+gap:10px;
+justify-content:center;
+flex-wrap:wrap;
+margin-top:12px;
+}
+.flowers img{
+width:min(42vw,170px);
+border-radius:16px;
+box-shadow:0 8px 18px rgba(0,0,0,.25);
+}
+
+/* Letter */
 .letterWrap{
-background:#f5e6c8;border-radius:18px;padding:22px;
-position:relative;box-shadow:inset 0 0 0 2px rgba(0,0,0,.05)
+background:#f5e6c8;
+border-radius:18px;
+padding:22px;
+position:relative;
+box-shadow:inset 0 0 0 2px rgba(0,0,0,.05);
 }
-.stamp{position:absolute;top:-14px;right:-14px;width:90px;transform:rotate(10deg)}
-.letterText{font-size:18px;line-height:1.55;white-space:pre-wrap}
-.caret{border-right:2px solid black;animation:blink .8s infinite}
-@keyframes blink{50%{border-color:transparent}}
+.stamp{
+position:absolute;
+top:-14px;
+right:-14px;
+width:90px;
+transform:rotate(10deg);
+}
 </style>
 </head>
 
 <body>
 
-<audio id="music" loop>
+<audio id="music" loop preload="auto">
 <source src="no_one_noticed.mp3" type="audio/mpeg">
 </audio>
 
 <div class="container">
 
+<!-- SLIDE 1 (VALENTINE) -->
 <div class="card" id="slide1">
-<h1><span class="tw" data-text="Pour Sara ❤️"></span></h1>
-<p><span class="tw" data-text="Mon amoureuse,\nvoici un petit cadeau de ma part.\nJ’espère que tu vas aimer."></span></p>
-<p><span class="tw" data-text="Si tu as reçu ce lien c’est que ton cadeau est arrivé\nj’espère qu’il va te plaire 🫂❤️"></span></p>
-<button class="btn musicBtn" onclick="startMusic()">🎵 Activer la musique</button>
-<div class="controls">
-<div></div>
-<button class="btn nextBtn" onclick="nextSlide()">Suivant<img src="black-cat.png"></button>
+<div class="valWrap">
+<img id="valImg" src="https://media.tenor.com/VIChDQ6ejRQAAAAj/jumping-bear-hearts-no-png.gif">
+<h1 id="valTitle">Will you be my Valentine?</h1>
+<div class="valButtons">
+<button id="yesBtn" class="valBtn valYes" onclick="valYes()">Yes</button>
+<button id="noBtn" class="valBtn valNo" onclick="valNo()">No</button>
 </div>
 </div>
 
+<div class="controls">
+<div></div>
+<button class="btn nextBtn" onclick="nextSlide()">Suivant <img src="black-cat.png"></button>
+</div>
+</div>
+
+<!-- SLIDE 2 -->
 <div class="card hidden" id="slide2">
-<h1><span class="tw" data-text="Des fleurs pour toi 🌹"></span></h1>
-<p><span class="tw" data-text="Je sais que ce ne sont pas des vraies fleurs,\nmais elles sont pour toi."></span></p>
-<p><span class="tw" data-text="Je t’aime mon amoureuse."></span></p>
+<h1>Pour Sara ❤️</h1>
+<p>Mon amoureuse,<br>voici un petit cadeau de ma part.<br>J’espère que tu vas aimer.</p>
+<p>Si tu as reçu ce lien c’est que ton cadeau est arrivé<br>j’espère qu’il va te plaire 🫂❤️</p>
+
+<button class="btn" onclick="toggleMusic()">🎵 Activer la musique</button>
+
+<div class="controls">
+<button class="btn" onclick="prevSlide()">⬅</button>
+<button class="btn nextBtn" onclick="nextSlide()">Suivant <img src="black-cat.png"></button>
+</div>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="card hidden" id="slide3">
+<h1>Des fleurs pour toi 🌹</h1>
+<p>Je sais que ce ne sont pas des vraies fleurs,<br>mais elles sont pour toi.</p>
+<p>Je t’aime mon amoureuse.</p>
+
 <div class="flowers">
 <img src="WhatsApp Image 2026-01-15 at 07.36.36.jpeg">
 <img src="WhatsApp Image 2026-01-15 at 07.36.37.jpeg">
 </div>
+
 <div class="controls">
 <button class="btn" onclick="prevSlide()">⬅</button>
-<button class="btn nextBtn" onclick="nextSlide()">Suivant<img src="black-cat.png"></button>
+<button class="btn nextBtn" onclick="nextSlide()">Suivant <img src="black-cat.png"></button>
 </div>
 </div>
 
-<div class="card hidden" id="slide3">
-<h1><span class="tw" data-text="Tu me manques ❤️"></span></h1>
-<p><span class="tw" data-text="Malgré la distance, tu me manques beaucoup.\nJe t’aime et je t’attends.\nCet été on va tellement s’amuser ❤️"></span></p>
-<div class="controls">
-<button class="btn" onclick="prevSlide()">⬅</button>
-<button class="btn nextBtn" onclick="nextSlide()">Suivant<img src="black-cat.png"></button>
-</div>
-</div>
-
+<!-- SLIDE 4 -->
 <div class="card hidden" id="slide4">
-<h1><span class="tw" data-text="Can't wait 👀"></span></h1>
-<p><span class="tw" data-text="J’attends mon appel vidéo du soir.\nRien que d’y penser mes hormones me jouent des tours 👀"></span></p>
+<h1>Tu me manques ❤️</h1>
+<p>Malgré la distance, tu me manques beaucoup.<br>
+Je t’aime et je t’attends.<br>
+Cet été on va tellement s’amuser ❤️</p>
+
 <div class="controls">
 <button class="btn" onclick="prevSlide()">⬅</button>
-<button class="btn nextBtn" onclick="nextSlide()">Suivant<img src="black-cat.png"></button>
+<button class="btn nextBtn" onclick="nextSlide()">Suivant <img src="black-cat.png"></button>
 </div>
 </div>
 
+<!-- SLIDE 5 -->
 <div class="card hidden" id="slide5">
-<h1><span class="tw" data-text="Ma lettre pour toi 💌"></span></h1>
+<h1>Can't wait 👀</h1>
+<p>J’attends mon appel vidéo du soir.<br>
+Rien que d’y penser mes hormones me jouent des tours 👀</p>
+
+<div class="controls">
+<button class="btn" onclick="prevSlide()">⬅</button>
+<button class="btn nextBtn" onclick="nextSlide()">Suivant <img src="black-cat.png"></button>
+</div>
+</div>
+
+<!-- SLIDE 6 LETTER -->
+<div class="card hidden" id="slide6">
+<h1>Ma lettre pour toi 💌</h1>
 <div class="letterWrap">
 <img src="stamp.png" class="stamp">
-<div id="letterText" class="letterText"></div>
+<p>
+coucou mon amoureuse je t’écris cette lettre parce que je sais que tu aime bien ça et je suis l’écrire pour te dire a quelle point je t’aime et je suis fière d’être ton gars jespere que tu sais a quelle point je suis sincère et que je suis tres serieux dans notre relation joyeuse saint Valentin mon amoureuse toi ❤️
+</p>
 </div>
+
 <div class="controls">
 <button class="btn" onclick="prevSlide()">⬅</button>
-<button class="btn" onclick="location.reload()">Restart 🔁</button>
+<button class="btn" onclick="restartAll()">Restart 🔁</button>
 </div>
 </div>
 
 </div>
 
 <script>
-let current=1,total=5;
-const music=document.getElementById("music");
-function startMusic(){music.play()}
-function showSlide(n){
-for(let i=1;i<=total;i++)document.getElementById("slide"+i).classList.add("hidden");
-current=n;
-const slide=document.getElementById("slide"+n);
-slide.classList.remove("hidden");
-typeSlide(slide);
-if(n===5)typeLetter()
-}
-function nextSlide(){if(current<total)showSlide(current+1)}
-function prevSlide(){if(current>1)showSlide(current-1)}
-for(let i=0;i<26;i++){
-const h=document.createElement("div");
+
+/* Hearts */
+for(let i=0;i<25;i++){
+let h=document.createElement("div");
 h.className="heart";
 h.textContent="❤️";
 h.style.left=Math.random()*100+"vw";
 h.style.fontSize=(12+Math.random()*22)+"px";
 h.style.animationDuration=(6+Math.random()*6)+"s";
-document.body.appendChild(h)
+document.body.appendChild(h);
 }
-function typeSlide(slide){
-const nodes=[...slide.querySelectorAll(".tw")];
-nodes.forEach(n=>n.textContent="");
-let idx=0;
-function run(){
-if(idx>=nodes.length)return;
-const el=nodes[idx],text=el.dataset.text;
-el.classList.add("caret");let i=0;
-const t=setInterval(()=>{
-el.textContent+=text[i++];
-if(i>=text.length){clearInterval(t);el.classList.remove("caret");idx++;setTimeout(run,200)}
-},25)
+
+/* Slides */
+let current=1;
+let total=6;
+
+function showSlide(n){
+for(let i=1;i<=total;i++){
+document.getElementById("slide"+i).classList.add("hidden");
 }
-run()
+current=n;
+document.getElementById("slide"+n).classList.remove("hidden");
 }
-const letter=`coucou mon amoureuse je t’écris cette lettre parce que je sais que tu aime bien ça et je suis l’écrire pour te dire a quelle point je t’aime et je suis fière d’être ton gars jespere que tu sais a quelle point je suis sincère et que je suis tres serieux dans notre relation joyeuse saint Valentin mon amoureuse toi ❤️`;
-function typeLetter(){
-const el=document.getElementById("letterText");
-el.textContent="";let i=0;
-const t=setInterval(()=>{
-el.textContent+=letter[i++];
-if(i>=letter.length)clearInterval(t)
-},28)
+function nextSlide(){if(current<total)showSlide(current+1);}
+function prevSlide(){if(current>1)showSlide(current-1);}
+function restartAll(){location.reload();}
+
+/* Music */
+let music=document.getElementById("music");
+function toggleMusic(){
+music.volume=0.7;
+music.play();
 }
+
+/* Valentine logic */
+let noClicks=0;
+let isValentine=false;
+
+const NO_PHRASES=[
+"No 💔",
+"Are you sure?",
+"Please reconsider",
+"One more chance?",
+"Don't break my heart 💔"
+];
+
+function valNo(){
+if(isValentine)return;
+noClicks++;
+let yesBtn=document.getElementById("yesBtn");
+let noBtn=document.getElementById("noBtn");
+yesBtn.style.fontSize=(noClicks*20+16)+"px";
+noBtn.textContent=NO_PHRASES[Math.min(noClicks,NO_PHRASES.length-1)];
+}
+
+function valYes(){
+isValentine=true;
+document.getElementById("valImg").src="https://media.tenor.com/f1xnRxTRxLAAAAAj/bears-with-kisses-bg.gif";
+document.getElementById("valTitle").textContent="Yay!!! 💖";
+document.getElementById("yesBtn").style.display="none";
+document.getElementById("noBtn").style.display="none";
+}
+
 showSlide(1);
 </script>
 
